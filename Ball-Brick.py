@@ -9,6 +9,8 @@ def main():
         arrBrickInfo=""
         arrBrickInfo = brickInfo.split()
         gameMatrix[int(arrBrickInfo[0])][int(arrBrickInfo[1])] = arrBrickInfo[2]
+        if(arrBrickInfo[2]=="P"):
+            gameMatrix[int(arrBrickInfo[0])][int(arrBrickInfo[1])] = "1"
         entercontinueornot=input("Do you want to continue to Enter Direction (Y or N)?")
         # enterDirectionInfo = if entercontinueornot == "Y" ? True : False     
         enterBricksInfo=bool(entercontinueornot == "Y") 
@@ -60,6 +62,9 @@ def TraverseStraight(gamematrix,ballposition,ballcount,matrixSize):
             elif(gamematrix[row][col] == "DS"):
                 DestroySurrounding(gamematrix, matrixSize, row, col)
                 break
+            elif(gamematrix[row][col] == "B"):
+                destroyB(gamematrix, matrixSize, row, col,ballposition)
+                break
             else:
                 bricktype = 0
                 # TryParse(gamematrix[row, col], out bricktype)
@@ -105,6 +110,14 @@ def DestroySurrounding(gamematrix,matrixSize,row,col):
     for i in range(row-1,row+2):
         for j in range(col-1,col+2):
             if(gamematrix[i][j] != "W" or gamematrix[i][j] != "G" or gamematrix[i][j] != "O"):
-                gamematrix[i][j] = " ";                    
+                gamematrix[i][j] = " ";    
+
+def destroyB(gamematrix, matrixSize, row, col,ballposition):
+    for i in range(row-1,row+2):
+        for j in range(col-1,col+2):
+            if(gamematrix[i][j] == "B"):
+                gamematrix[i][j] = " "
+                gamematrix[matrixSize-1][ballposition+1]="_"
+                break   
 
 main()                
