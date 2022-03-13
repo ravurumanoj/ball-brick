@@ -7,4 +7,4 @@ requierements:- python idle or visual studio code
    then give proper inputs to display the output.
 2- you can refer the ( ball brick.pdf ) how the output will display according to input.
 
-
+3-github--( https://github.com/ravurumanoj )
